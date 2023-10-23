@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Form</title>
+</head>
+<body>
+    <form method="POST">
+        {% csrf_token %}
+        {{fm}}
+        <button type="submit">submit</button>
+    </form>
+    <br>
+    <table border="1">
+        <tr>
+            <td>Name</td>
+            <td>Email</td>
+            <td>RollNum</td>
+            <td>Section</td>
+            <td>Action</td>
+        </tr>
+
+
+        {% for i in data %}
+        <tr>
+            <td>{{i.name}}</td>
+            <td>{{i.email}}</td>
+            <td>{{i.roll_number}}</td>
+            <td>{{i.section}}</td>
+            <td><a href="{% url 'update' i.id %}"><button>Update</button></a>
+            <a href="{% url 'delete' i.id %}"><button>Delete</button></a></td>
+        </tr>
+        {% endfor %}
+    </table>
+</body>
+</html>
